@@ -1,5 +1,5 @@
 # Projektne faze
-- [ ] - Opis projekta
+- [x] - Opis projekta
 - [ ] - Početna struktura aplikacije
 - [ ] - Prototip
 - [ ] - Konzultacije
@@ -8,12 +8,17 @@
 
 # Opis projekta
 ## Kratki opis
-Ovdje ide opis projekta
+Aplikacija će se zvati Skladište i predstavljati će skladište neke trgovine. Korisnik će moći dodavati artikle u aplikaciju. Svaki artikal će imati
+ime ,nabavnu i prodajnu cijenu, te koliko je komada  trenutno raspoloživo. Korisnik će moći pregledati stanje na skladištu. Korisnik će  pretraživati proizvode po imenu. U slučaju više trgovina, korisnik će moći dodati trgovinu.
 
 ## Popis funkcionalnosti
-1. a
-2. b
-3. c
+1. Korisnik unosi aritkal
+2. Pregled proizvoda na skladištu
+3. Pregled prodanih proizvoda i ukupna zarada
+4. Pregled prihoda i rashoda (s filtriranjem)
+5. Pretraživanje pojedinih  proizvoda
+6. Dodavanje nove trgovine/skladišta
+
 
 
 ## UPUTE
