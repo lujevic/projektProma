@@ -3,10 +3,7 @@
 Pocetak | Kraj
 ------- | ----
 hh:mm   | hh:mm
-### Kratki opis promjena
+## 24.01.2022.
+### Opis projekta
 Definirani zahtjevi aplikacije.
-Dovršena prva faza projekta.
-
-## 23.12.2021.
-### Kratki opis promjena
-Napravio sam navigaciju
+Dovršena prva faza projekta
