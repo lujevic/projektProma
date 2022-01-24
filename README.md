@@ -11,6 +11,7 @@
 Aplikacija će se zvati Skladište i predstavljati će skladište neke trgovine. Korisnik će moći dodavati artikle u aplikaciju. Svaki artikal će imati:
 ime, nabavnu i prodajnu cijenu, sliku (opcionalno) i koliko je komada  trenutno raspoloživo. Korisnik će moći pregledati stanje na skladištu. Korisnik će  pretraživati proizvode po imenu. U slučaju više trgovina korisnik će moći dodati trgovinu.
 
+
 ## Popis funkcionalnosti
 1. Korisnik unosi aritkal
 2. Pregled proizvoda na skladištu
