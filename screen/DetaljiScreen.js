@@ -16,7 +16,7 @@ const DetaljiScreen = ({route, navigation}) => {
                     "Lokacija" : poslovnica.lokacija,
                     "Broj razlicitih artikala na skladistu" : poslovnica.artikli.length,
                     "Ukupan broj artikala": poslovnica.artikli.reduce((acc,x) =>acc + x.kolicina, 0),
-                    "Zarada" : `${poslovnica.zarada} kn`,
+                    "Zarada" : `${Math.round(poslovnica.zarada * 100) / 100} kn`,
                     "Promijeni podatke" :  <Botun onPress={() => navigation.navigate('Uredi poslovnicu', { poslovnica: poslovnica })}>
                     Promijeni podatke</Botun>
                 }

@@ -8,6 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@ant-design/react-native": "^5.0.0",
     "@react-native-picker/picker": "2.4.0",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/drawer": "^6.4.1",

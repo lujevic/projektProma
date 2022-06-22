@@ -11,10 +11,10 @@ Dovršena prva faza projekta
 ##  Commit: [Skladiste projekt] - Prototip napravljen bez dizajna 6d6d7f47
 Datum      | Pocetak | Kraj
 ---------- | ------- | ----
-19.06.2022.| 14:00   | 20.00
-20.06.2022.| 17:00   | 22.00
-21.06.2022.| 9:00    | 22.00
-22.06.2022.| 11:00   | 13.00
+19.06.2022.| 14:00   | 20:00
+20.06.2022.| 17:00   | 22:00
+21.06.2022.| 9:00    | 22:00
+22.06.2022.| 11:00   | 13:00
 
 ### Opis aktivnosti
 Definiran prototip aplikacije bez ikakvog dizajna.
@@ -22,16 +22,27 @@ Sva funkcionalnost riješena, osim tri problema:
 1.  **Dropdown** u jselektira odmah  poslovnicu nego tek nakon nekoliko puta
 2. **Slider** Uvesti slider za odabir kolicine
 3. **Warning** Each child in a list should have a unique "key" prop
-### Done:
+
+## Commit: [Skladiste  projekt] - Funkcionalnost gotova
+Datum      | Pocetak | Kraj
+---------- | ------- | ----
+26.06.2022.| 20:00   | 23:00
+
+### Opis aktivnosti
+Funkcionalna aplikacija gotova.
+- Dropdown zamijenjen pickerom
+- Uveden slider
+
+## Done:
 - [x] - Navigacija
 - [x] - Komponente
 - [x] - Centralni spremnik
 - [x] - Prototip
+- [x] - Dodana zadnja linija gdje nedostaje
 
-### ToDo:
-- [ ] - Konzultacije
-- [ ] - Slider || Forma
+## ToDo:
+- [x] - Slider || Forma
 - [ ] - Warning
-- [ ] - DropDown
+- [x] - DropDown
 - [ ] - Izgled (Fontovi, ikone, naslovna)
 - [ ] - Prilagodljivost

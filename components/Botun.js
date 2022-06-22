@@ -16,7 +16,8 @@ const stil = StyleSheet.create({
     fontSize: 20,
   },
   botun: {
-    width: '50%',
+    width: '70%',
+    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,

@@ -20,7 +20,7 @@ const AddScreen = ({route,navigation}) => {
             komponenta =  <AddArtikal navigate ={navigation.navigate}></AddArtikal>
             break;
         default:
-            console.log("ERROR");
+            console.log("ERROR", route.name);
             break;
     } 
     return komponenta;

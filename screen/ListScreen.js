@@ -12,7 +12,7 @@ import ModalAction from '../components/ModalAction';
 import screenStyle from '../styles/ScreenStyle';
 
 const POSLOVNICE = "Popis poslovnica"
-const PRETRAZI_ARTIKLE = "Pretrazi artikale"
+const PRETRAZI_ARTIKLE = "Pretrazi artikle"
 const PREGLED_SKLADISTA = "Pregled skladista"
 
 
@@ -34,7 +34,7 @@ const ListScreen = ({route,navigation}) => {
             {answer: "Ne", callback: ()=> {} }]} />
             
         }
-        return (<Kartica>{data}</Kartica>);
+        return (<Kartica stilovi={0}>{data}</Kartica>);
     };
     const prikazArtikla = (podaci) => {
         const data = {"Naziv": podaci.item.artikal.naziv,
@@ -45,7 +45,7 @@ const ListScreen = ({route,navigation}) => {
         "Prodaj artikl": <Botun onPress=  {()=> { navigation.navigate('Prodaj artikal', {id_poslovnice: podaci.item.id_poslovnice, 
             naziv: podaci.item.naziv})} }>Prodaj</Botun>, 
     }
-    return (<Kartica>{data}</Kartica>)
+    return (<Kartica stilovi={0}>{data}</Kartica>)
     }
 
     const prikazSkladista = (podaci) => {
@@ -57,7 +57,7 @@ const ListScreen = ({route,navigation}) => {
         "Prebaci u drugu poslovnicu": <Botun Botun onPress=  {()=> 
             { navigation.navigate('Prebaci artikal', {id_poslovnice: route.params.id_poslovnice, naziv: podaci.item.naziv})}}> Prebaci artikal</Botun> 
     }
-    return (<Kartica>{data}</Kartica>)
+    return (<Kartica stilovi={0}>{data}</Kartica>)
     }
   
     const data = useSelector(state => {

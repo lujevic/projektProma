@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import screenStyle from '../styles/ScreenStyle';
 
 const Kartica = (props) => {
     const createText = (key, value) => {
@@ -10,7 +9,7 @@ const Kartica = (props) => {
             </>)
     }
     let data = Object.keys(props.children).map(x=>createText(x,props.children[x]))
-    return (<View style={stil.kartica}>{data}</View>)
+    return (<View style={ props.stilovi==0 ?stil.kartica : null}>{data}</View>)
 };
 
 const stil = StyleSheet.create({

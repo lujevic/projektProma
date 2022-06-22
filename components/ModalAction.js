@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState  } from 'react'; 
 import { View, Text, StyleSheet, Modal, Pressable } from 'react-native';
+import Botun from './Botun';
 
 const ModalAction = (props) => {
     const [modalVisible, setModalVisible] = useState(false);
     const action = props.action;
+    console.log("NASLOV",props.naslov)
 
     return ( <View style={styles.centeredView}>
         <Modal
@@ -27,16 +29,14 @@ const ModalAction = (props) => {
                   x.callback()
 
                 }} >
-                <Text style={styles.textStyle}> {x.answer}</Text>
+                <Text style={styles.textStyle}>{x.answer}</Text>
               </Pressable> )}
             </View>
           </View>
         </Modal>
-        <Pressable
+        <Botun
           style={[styles.button, styles.buttonOpen]}
-          onPress={() => setModalVisible(true)}>
-          <Text style={styles.textStyle}> {props.naslov}</Text>
-        </Pressable>
+          onPress={() => setModalVisible(true)}>{props.naslov}</Botun>
       </View>)
 };
 

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Text, StyleSheet, View, TextInput, } from 'react-native'
 import {useSelector,useDispatch} from 'react-redux';
 import { Dropdown } from 'react-native-element-dropdown';
+import { Picker } from '@react-native-picker/picker';
 
 import { POSLOVNICA_ACTION, poslovnicaAction } from '../stores/actions/poslovnicaAction'
 
@@ -15,13 +16,14 @@ import screenStyle from '../styles/ScreenStyle';
 const AddArtikal = (props) => {
     const dispatch = useDispatch()
     const poslovnice = useSelector(state=> state.poslovnica.poslovnice)
+    const picker_items = poslovnice.map(x=> <Picker.Item label={x.naziv} value={x.id} />)
 
     const [naziv, onChangeNaziv] = useState('');
     const [nabavna_cijena, onChangeNabavnaCijena] = useState('');
     const [prodajna_cijena, onChangeProdajnaCijena] = useState('');
     const [kolicina, onChangeKolicina] = useState('');
     const [ok, setOk] = useState(0);
-    const [id_poslovnice, setId] = useState(null);
+    const [id_poslovnice, setId] = useState(picker_items.length == 0 ? '' : picker_items[0].props.value);
 
     const ErrorCode = { OK: 0, NAZIV: 1, NABAVNA_CIJENA: 2, PRODAJNA_CIJENA: 4, KOLICINA: 8, POSLOVNICA: 16 }
 
@@ -57,7 +59,7 @@ const AddArtikal = (props) => {
             onChangeProdajnaCijena('')
             alert("Dodan artikal")
             props.navigate('Home')
-            setId(null)
+
         }
     }
   return (
@@ -98,27 +100,9 @@ const AddArtikal = (props) => {
   {(ok & ErrorCode.KOLICINA) ? <Text style={stil.errorTekst}>Pogrešna kolicina</Text> : null }
 
   <Text style={null}>Odaberite poslovnicu:</Text>
-  <Dropdown
-        style={null}
-        placeholderStyle={null}
-        selectedTextStyle={null}
-        inputSearchStyle={null}
-        iconStyle={null}
-        data={poslovnice}
-        search
-        maxHeight={300}
-        labelField="naziv"
-        valueField="id"
-        placeholder="Select item"
-        searchPlaceholder="Search..."
-        value={id_poslovnice}
-        onChange={item => { 
-          setId(item.id);
-        }}
-      />
-
+  <Picker selectedValue={id_poslovnice}  onValueChange={x=> setId(x)}>{picker_items}</Picker>
    {(ok & ErrorCode.POSLOVNICA) ? <Text style={stil.errorTekst}> Odaberite poslovnicu </Text> : null }
-  
+   
   <Botun title="Unos artikla poslovnice"
       onPress={()=>dodajArtikal()}> Unesi novi artikal</Botun>
   
@@ -176,4 +160,3 @@ const stil = StyleSheet.create({
 })
 
 export default AddArtikal;
-

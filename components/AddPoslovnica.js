@@ -123,4 +123,3 @@ const stil = StyleSheet.create({
 },
 })
 export default AddPoslovnica;
-
