@@ -33,6 +33,20 @@ Funkcionalna aplikacija gotova.
 - Dropdown zamijenjen pickerom
 - Uveden slider
 
+## Commit: [Skladiste  projekt] - Aplikacija sa dizajnom
+Datum      | Pocetak | Kraj
+---------- | ------- | ----
+27.06.2022.| 13:00   | 23:00
+28.06.2022.| 10:00   | 13:00
+
+### Opis aktivnosti
+Funkcionalna aplikacija gotova.
+- Dizajn aplikacije je napravljen
+- Uređeni botuni, ikone forme....
+- Stavljen loger za utisavanje warninga
+- Reset forme nakon pomicanja fokusa
+- Izbrisan styles folder
+
 ## Done:
 - [x] - Navigacija
 - [x] - Komponente
@@ -42,7 +56,8 @@ Funkcionalna aplikacija gotova.
 
 ## ToDo:
 - [x] - Slider || Forma
-- [ ] - Warning
+- [x] - Warning
 - [x] - DropDown
-- [ ] - Izgled (Fontovi, ikone, naslovna)
+- [x] - Izgled (Fontovi, ikone, naslovna)
 - [ ] - Prilagodljivost
+- [x] - Odabrati boje navigacije i odabrati boju pozadine

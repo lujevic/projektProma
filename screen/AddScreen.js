@@ -11,10 +11,10 @@ const AddScreen = ({route,navigation}) => {
     let komponenta;
     switch (route.name) {
         case OTVORI_POSLOVNICU:
-            komponenta =  <AddPoslovnica navigate ={()=> navigation.navigate('Home')}  route = {route} ></AddPoslovnica>
+            komponenta =  <AddPoslovnica  navigation={navigation}  route = {route} ></AddPoslovnica>
             break;
         case EDIT_POSLOVNICA:
-            komponenta =  <AddPoslovnica navigate={() => navigation.goBack()} route={route}></AddPoslovnica>;
+            komponenta =  <AddPoslovnica navigation={navigation} route={route}></AddPoslovnica>;
             break;
         case NARUCI_ARTIKAL:
             komponenta =  <AddArtikal navigate ={navigation.navigate}></AddArtikal>

@@ -1,31 +1,30 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import screenStyle from '../styles/ScreenStyle';
 
 const Naslov = (props) => {
-
-    let rad = props.children
   return (
     <View style={null}>
-      <Text style={null}>{props.natpis}</Text>
+      <Text style={stil.naslov}>{props.natpis}</Text>
     </View>
   );
 };
 
 const stil = StyleSheet.create({
-  kartica: {
-      marginTop: 20,
+  naslov: {
+      marginTop: 10,
       marginBottom: 20,
-    width : '50%',
-    backgroundColor: "white",
-    padding: 20,
-    shadowColor: 'black',
-    shadowOffset: {width: 0, height: 3},
-    shadowRadius: 6,
-    shadowOpacity: 0.75,
-    elevation: 7,
-    borderRadius: 10
+      fontFamily: 'Flexo',
+      fontSize: 35,
+      marginBottom: 20,
+      color: "#7b2b2a",
+      textShadowColor: "black",
+      textShadowOffset: {width:2, height:2},
+      alignContent: "center"
+
   },
+  polozaj: {
+
+  }
 })
 
 export default Naslov;

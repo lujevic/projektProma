@@ -2,11 +2,22 @@ import React from 'react';
 import { useState  } from 'react'; 
 import { View, Text, StyleSheet, Modal, Pressable } from 'react-native';
 import Botun from './Botun';
+import CircleBotun from './CircleBotun';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const ModalAction = (props) => {
     const [modalVisible, setModalVisible] = useState(false);
     const action = props.action;
-    console.log("NASLOV",props.naslov)
+    const isDelete = props.upit == "Želite li proglasiti stečaj?"
+    const bgColor = isDelete ? "#5f4187" : "green"
+    const size = isDelete  ?  20:40
+    const iconName = isDelete ? "trash-sharp" : "checkmark-done-sharp"
+    const stilBotun = isDelete ? null: {height:60, width:60}
+    const renderIcon = (answer) => {
+      
+      if(answer == "Da")  return (<Ionicons name="checkmark-circle"  size={50}  color="#345b4d"></Ionicons>)
+      return ((<Ionicons name="close-circle"  size={50}  color="#c23b39"></Ionicons>))
+    }
 
     return ( <View style={styles.centeredView}>
         <Modal
@@ -22,21 +33,20 @@ const ModalAction = (props) => {
             <View style={styles.modalView}>
               <Text style={styles.modalText}>{props.upit}</Text>
               {action.map(x=>  
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
+              <Pressable key={x.answer}
                 onPress={() => {
                   setModalVisible(!modalVisible)
                   x.callback()
 
                 }} >
-                <Text style={styles.textStyle}>{x.answer}</Text>
+                <Text  key={x.answer} style={styles.textStyle}>{renderIcon(x.answer)}</Text>
               </Pressable> )}
             </View>
           </View>
         </Modal>
-        <Botun
+        <CircleBotun stil={{backgroundColor:bgColor, ...stilBotun}}
           style={[styles.button, styles.buttonOpen]}
-          onPress={() => setModalVisible(true)}>{props.naslov}</Botun>
+          onPress={() => setModalVisible(true)}><Ionicons name={iconName}  size={size}  color="white"></Ionicons></CircleBotun>
       </View>)
 };
 

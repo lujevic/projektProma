@@ -1,29 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Text, StyleSheet, View, TextInput, } from 'react-native'
 import {useSelector,useDispatch} from 'react-redux';
-import { Dropdown } from 'react-native-element-dropdown';
 import { Picker } from '@react-native-picker/picker';
+import { useIsFocused } from "@react-navigation/native";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { POSLOVNICA_ACTION, poslovnicaAction } from '../stores/actions/poslovnicaAction'
 
 import Artikal from '../models/Artikal';
 
 import Botun from './Botun';
-
-import screenStyle from '../styles/ScreenStyle';
+import Naslov from './Naslov';
 
 const AddArtikal = (props) => {
     const dispatch = useDispatch()
     const poslovnice = useSelector(state=> state.poslovnica.poslovnice)
-    const picker_items = poslovnice.map(x=> <Picker.Item label={x.naziv} value={x.id} />)
+    const picker_items = poslovnice.map(x=> <Picker.Item key={x.id} label={x.naziv} value={x.id} />)
 
     const [naziv, onChangeNaziv] = useState('');
     const [nabavna_cijena, onChangeNabavnaCijena] = useState('');
     const [prodajna_cijena, onChangeProdajnaCijena] = useState('');
     const [kolicina, onChangeKolicina] = useState('');
     const [ok, setOk] = useState(0);
+    const isFocused = useIsFocused()
     const [id_poslovnice, setId] = useState(picker_items.length == 0 ? '' : picker_items[0].props.value);
+    
+    const resetForm = ()=> {
+      onChangeNaziv('')
+      onChangeNabavnaCijena('')
+      onChangeKolicina('')
+      onChangeProdajnaCijena('')
+      setOk(0);
+    } 
+    useEffect(()=> {if (!isFocused) {resetForm()}},[isFocused])
 
     const ErrorCode = { OK: 0, NAZIV: 1, NABAVNA_CIJENA: 2, PRODAJNA_CIJENA: 4, KOLICINA: 8, POSLOVNICA: 16 }
 
@@ -48,115 +58,105 @@ const AddArtikal = (props) => {
     const dodajArtikal = () => {
         let check = validateInput()
         setOk(check);
-        console.log("CHECK", check, id_poslovnice);
         if (check == ErrorCode.OK) {
             !isArticalExist() ? dispatch(poslovnicaAction(POSLOVNICA_ACTION.ADD_ARTIKAL, {id: id_poslovnice, 
-                artikal: new Artikal( naziv, nabavna_cijena,prodajna_cijena, kolicina)})) : null;
+                artikal: new Artikal( naziv, Number(nabavna_cijena), Number(prodajna_cijena), Number(kolicina))})) : null;
              /*TODO:  dodaj kolicinu na postojeci artikal i  promijeni cijene */;
-            onChangeNaziv('')
-            onChangeNabavnaCijena('')
-            onChangeKolicina('')
-            onChangeProdajnaCijena('')
+            resetForm();
             alert("Dodan artikal")
             props.navigate('Home')
 
         }
     }
   return (
-<View style={null}>
-  <Text style={null}>Naziv artikla:</Text>
+<View style={stil.ekran}>
+  <Naslov natpis="Dodaj artikal"></Naslov>
+  <Text style={stil.inputLabel}>Naziv artikla:</Text>
   <TextInput
     placeholder='Naziv artikla...'
-    style={null}
+    style={stil.input}
     onChangeText={(x) => onChangeNaziv(x)}
     value={naziv}
   />
   {(ok & ErrorCode.NAZIV) ? <Text style={stil.errorTekst}>Pogrešno ime</Text> : null }
-  <Text style={null}>Nabavna cijena</Text>
+  <Text style={stil.inputLabel}>Nabavna cijena</Text>
   <TextInput
     keyboardType='numeric'
     placeholder='Nabavna cijena...'
-    style={null}
+    style={stil.input}
     onChangeText={(x) => onChangeNabavnaCijena(x)}
     value={nabavna_cijena}
   />
   {(ok & ErrorCode.NABAVNA_CIJENA) ? <Text style={stil.errorTekst}>Pogrešna nabavna cijena</Text> : null }
-<Text style={null}>Prodajna cijena:</Text>
+<Text style={stil.inputLabel}>Prodajna cijena:</Text>
   <TextInput
     placeholder='Prodajna cijena...'
-    style={null}
+    style={stil.input}
     onChangeText={(x) => onChangeProdajnaCijena(x)}
    a value={prodajna_cijena}
   />
   {(ok & ErrorCode.PRODAJNA_CIJENA) ? <Text style={stil.errorTekst}>Pogrešna  prodajna cijena</Text> : null }
 
-  <Text style={null}>Kolicina:</Text>
+  <Text style={stil.inputLabel}>Kolicina:</Text>
   <TextInput
     placeholder='Kolicina...'
-    style={null}
+    style={stil.input}
     onChangeText={(x) => onChangeKolicina(x)}
     value={kolicina}
   />
   {(ok & ErrorCode.KOLICINA) ? <Text style={stil.errorTekst}>Pogrešna kolicina</Text> : null }
 
-  <Text style={null}>Odaberite poslovnicu:</Text>
-  <Picker selectedValue={id_poslovnice}  onValueChange={x=> setId(x)}>{picker_items}</Picker>
-   {(ok & ErrorCode.POSLOVNICA) ? <Text style={stil.errorTekst}> Odaberite poslovnicu </Text> : null }
+  <Text style={stil.inputLabel}>Odaberite poslovnicu:</Text>
+  <View style={stil.picker}>
+    <Picker selectedValue={id_poslovnice} onValueChange={x=> setId(x)}>{picker_items}</Picker>
+    {(ok & ErrorCode.POSLOVNICA) ? <Text style={stil.errorTekst}> Odaberite poslovnicu </Text> : null }
+  </View>
    
   <Botun title="Unos artikla poslovnice"
-      onPress={()=>dodajArtikal()}> Unesi novi artikal</Botun>
+      onPress={()=>dodajArtikal()}><Ionicons  color="green" size={60} name="checkmark-done-circle"></Ionicons></Botun>
   
   </View>
   )
 }
 
-const styles = StyleSheet.create({
-    dropdown: {
-      margin: 16,
-      height: 50,
-      borderBottomColor: 'gray',
-      borderBottomWidth: 0.5,
-    },
-    icon: {
-      marginRight: 5,
-    },
-    placeholderStyle: {
-      fontSize: 16,
-    },
-    selectedTextStyle: {
-      fontSize: 16,
-    },
-    iconStyle: {
-      width: 20,
-      height: 20,
-    },
-    inputSearchStyle: {
-      height: 40,
-      fontSize: 16,
-    },
-  });
-
 const stil = StyleSheet.create({
-  tekst: {
-    fontFamily: 'Baloo',
-    color: "#fff",
-    fontSize: 20,
+  inputLabel: {
+    fontFamily: 'Flexo',
+    fontSize: 15,
+    marginBottom: 5, 
   },
+  picker: {
+    fontFamily: 'Verdana',
+    width: '80%',
+    height: 35,
+   justifyContent: 'center',
+    borderColor: '#7b2b2a',
+    borderRadius: 10,
+    borderWidth: 2,
+    marginBottom:20
+  },
+  ekran: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f7f8f6'
+},
   errorTekst: {
-    fontFamily: 'Baloo',
+    fontFamily: 'Verdana',
     color: "red",
     fontSize: 12,
 
-  } ,
-  botun: {
-    width: '30%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-    backgroundColor: '#B0360E',
-    borderRadius: 10,    
+  },
+  input: {
+    fontFamily: 'Verdana',
+    width: '80%',
+    height: 35,
+    margin: 12,
+    borderColor: '#7b2b2a',
+    borderRadius: 10,
+    borderWidth: 2,
     padding: 10,
-},
+  },
 })
 
 export default AddArtikal;

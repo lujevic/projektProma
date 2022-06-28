@@ -3,7 +3,7 @@ import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 const Botun = (props) => {
   return (
-    <TouchableOpacity style={stil.botun} onPress={props.onPress}>
+    <TouchableOpacity style={{marginRight:15}} onPress={props.onPress}>
     <Text style={stil.tekst}>{props.children}</Text>
   </TouchableOpacity>
   )
@@ -21,7 +21,7 @@ const stil = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,
-    backgroundColor: '#B0360E',
+    backgroundColor: 'green',
     borderRadius: 10,
     padding: 10,
 },
