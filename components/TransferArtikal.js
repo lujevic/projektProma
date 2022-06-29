@@ -28,7 +28,8 @@ const TransferArtikal = (props) => {
     const picker_items = to_poslovnice.map(x=> <Picker.Item key={x.id} label={x.naziv} item={x} value={x.id} />)
 
      const transferArtikalCallback = () => {
-        if (selected_poslovnica == '') {
+        if (selected_poslovnica == '' || kolicina == 0) {
+            alert("Odaberite poslovnicu, kolicina mora biti veca 0")
             return;
         }
           const nova_kolicina = artikal.kolicina - kolicina
@@ -56,7 +57,7 @@ const TransferArtikal = (props) => {
   <Text style={stil.key}>Količina na skladištu:</Text>
   <Text style={stil.value}>{artikal.kolicina}</Text>
   <Text style={stil.key}>Odaberi količinu: </Text>
-  <Slider value={kolicina}  style={{width:"80%"}} onValueChange={setKolicina} maximumValue={artikal.kolicina} minimumValue={1}
+  <Slider value={kolicina}  style={{width:"80%"}} onValueChange={setKolicina} maximumValue={artikal.kolicina} minimumValue={0}
   step={1} trackStyle={{ height: 10, backgroundColor: 'transparent' }} thumbStyle={{ height: 20, width: 20, backgroundColor: 'green' }} />
   <Text style={stil.key}>Kolicina odabrana :</Text>
   <Text style={stil.value}>{kolicina}</Text>
@@ -73,7 +74,7 @@ const TransferArtikal = (props) => {
       </CircleBotun>
     </View>
     <View>  
-    <ModalAction upit={`Želite li prebaciti artikal u drugu poslovnicu? Kolcina: ${kolicina}`}
+    <ModalAction upit={`Želite li prebaciti artikal u drugu poslovnicu? Kolicina: ${kolicina}`}
     naslov="Prebaci artikal" action={ [{answer: "Da", callback: transferArtikalCallback},
     {answer: "Ne", callback: ()=> {} }]}/>
     </View>

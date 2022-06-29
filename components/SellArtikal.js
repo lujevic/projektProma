@@ -22,6 +22,10 @@ const SellArtikal = (props) => {
     const dispatch = useDispatch()
 
     const sellArtikalCallback = () => {
+        if (kolicina == 0) {
+          alert("Nazalost ne mozete prodati 0 proizovda");
+          return;
+        }
         const zarada_azurirana =  kolicina * artikal.prodajna_cijena + poslovnica.zarada
         const nova_kolicina = artikal.kolicina - kolicina
 
@@ -45,7 +49,7 @@ const SellArtikal = (props) => {
   <Text style={stil.key}>Količina na skladištu:</Text>
   <Text style={stil.value}>{artikal.kolicina}</Text>
   <Text style={stil.key}>Odaberi količinu: </Text>
-  <Slider value={kolicina} style={{width:"80%"}}onValueChange={setKolicina} maximumValue={artikal.kolicina} minimumValue={1}
+  <Slider value={kolicina} style={{width:"80%"}}onValueChange={setKolicina} maximumValue={artikal.kolicina} minimumValue={0}
   step={1} trackStyle={{ height: 10, backgroundColor: 'blue' }} thumbStyle={{ height: 20, width: 20, backgroundColor: 'green' }} />
   <Text style={stil.key}>Kolicina odabrana:</Text>
   <Text style={stil.value}>{kolicina}</Text>
@@ -60,7 +64,7 @@ const SellArtikal = (props) => {
       </CircleBotun>
     </View>
     <View>  
-      <ModalAction upit= {`Želite li prodati artikal? Kolcina: ${kolicina}`} naslov="Prodaj"
+      <ModalAction upit= {`Želite li prodati artikal? Kolicina: ${kolicina}`} naslov="Prodaj"
      action={ [{answer: "Da", callback: sellArtikalCallback}, {answer: "Ne", callback: ()=> {} }]} />
     </View>
 
