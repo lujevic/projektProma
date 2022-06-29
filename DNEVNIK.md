@@ -33,6 +33,15 @@ Funkcionalna aplikacija gotova.
 - Dropdown zamijenjen pickerom
 - Uveden slider
 
+## Commit: [Skladiste  projekt] - Bug fix: Min value na slideru stavljen na 0
+Datum      | Pocetak | Kraj
+---------- | ------- | ----
+29.06.2022.| 12:30   | 12:45
+
+### Opis aktivnosti
+Minimalna vrijdnost na slideru postavljena na 0. Time je onemogucen use case da je minimalna 
+vrijednost jednaka maksimalnoj (min =1 ) ==  (max = 1). Prilikom ovakvog slučaja  dolazi do buga.
+
 ## Commit: [Skladiste  projekt] - Aplikacija sa dizajnom
 Datum      | Pocetak | Kraj
 ---------- | ------- | ----
